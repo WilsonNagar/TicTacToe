@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout x = (LinearLayout)findViewById(R.id.resetlayout);
         x.animate().alpha(0f).setDuration(200);
         x.setVisibility(View.INVISIBLE);
+        turns=0;
 
     }
     @Override
