@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     int color = 0;// 0 = red , 1 = blue
-
+    int turns = 0;
     int[] board = {-1,-1,-1,-1,-1,-1,-1,-1,-1};
 
 
@@ -34,14 +34,16 @@ public class MainActivity extends AppCompatActivity {
                     color = 0;
                     board[Integer.parseInt(counter.getTag().toString())] = 1;
                 }
-                counter.animate().alpha(1f).setDuration(2000);
+                counter.animate().alpha(1f).setDuration(200);
                 ok = winner();
+                turns++;
+
             }
             if (ok==0){
                 Toast.makeText(this, "RED WINS", Toast.LENGTH_SHORT).show();
                 LinearLayout x = (LinearLayout)findViewById(R.id.resetlayout);
                 x.setVisibility(View.VISIBLE);
-                x.animate().alpha(1f).setDuration(2000);
+                x.animate().alpha(1f).setDuration(200);
                 TextView y = (TextView)findViewById(R.id.textView2);
                 y.setText("RED WINS THE GAME");
             }
@@ -49,9 +51,19 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "BLUE WINS", Toast.LENGTH_SHORT).show();
                 LinearLayout x = (LinearLayout)findViewById(R.id.resetlayout);
                 x.setVisibility(View.VISIBLE);
-                x.animate().alpha(1f).setDuration(2000);
+                x.animate().alpha(1f).setDuration(200);
                 TextView y = (TextView)findViewById(R.id.textView2);
                 y.setText("BLUE WINS THE GAME");
+            }
+            else if(turns==9){
+                Toast.makeText(this, "DRAW", Toast.LENGTH_SHORT).show();
+                LinearLayout x = (LinearLayout)findViewById(R.id.resetlayout);
+                x.setVisibility(View.VISIBLE);
+                x.animate().alpha(1f).setDuration(200);
+                TextView y = (TextView)findViewById(R.id.textView2);
+                y.setText("ITS A DRAW");
+
+
             }
         }
 
@@ -82,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             return board[2];
         }
 
+
         return -1;
     }
 
@@ -100,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         }
         color=0;
         LinearLayout x = (LinearLayout)findViewById(R.id.resetlayout);
-        x.animate().alpha(0f).setDuration(2000);
+        x.animate().alpha(0f).setDuration(200);
         x.setVisibility(View.INVISIBLE);
 
     }
